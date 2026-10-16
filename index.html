@@ -53,6 +53,7 @@
       color: inherit;
       text-decoration: none;
       display: inline-block;
+      width: max-content;
     }
     .logo small {
       display: block;
@@ -121,65 +122,205 @@
       background: var(--paper);
     }
     .desktop-reference {
-      display: block;
+      height: min(900px, 100vh);
+      min-height: 680px;
       width: 100%;
       position: relative;
-      cursor: pointer;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 53% 44%, rgba(255,255,255,.65), transparent 56%), var(--paper);
+      border-bottom: 1px solid var(--line);
     }
-    .desktop-reference img {
-      display: block;
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-    }
-
-    /* Clickable hotspots on the desktop hero image matching the 4 tees */
-    .hero-hotspots {
+    .hero-paint-stroke {
       position: absolute;
-      inset: 0;
+      z-index: 1;
+      left: -4%;
+      top: 55%;
+      width: 74%;
+      height: 10%;
+      background: var(--acid);
+      opacity: .78;
+      transform: rotate(-17deg);
+      clip-path: polygon(0 46%, 5% 33%, 9% 40%, 15% 15%, 17% 36%, 25% 25%, 29% 42%, 40% 19%, 43% 33%, 54% 11%, 58% 27%, 67% 19%, 73% 35%, 83% 18%, 86% 38%, 100% 26%, 96% 60%, 87% 54%, 81% 79%, 73% 59%, 61% 83%, 56% 61%, 45% 91%, 39% 66%, 28% 83%, 24% 64%, 14% 88%, 12% 64%, 5% 78%);
       pointer-events: none;
     }
+    .hero-torn-paper {
+      position: absolute;
+      z-index: 1;
+      right: -2%;
+      bottom: -4%;
+      width: 21%;
+      height: 24%;
+      background: #191917;
+      clip-path: polygon(15% 18%, 28% 12%, 35% 19%, 47% 4%, 55% 13%, 72% 2%, 78% 12%, 100% 5%, 100% 100%, 0 100%, 8% 85%, 3% 71%, 13% 55%, 5% 42%);
+      pointer-events: none;
+    }
+    .hero-backdrop-word {
+      position: absolute;
+      left: 3%;
+      top: 21%;
+      color: rgba(17,17,15,.045);
+      font-size: clamp(180px, 31vw, 460px);
+      line-height: .75;
+      font-weight: 950;
+      letter-spacing: -.11em;
+      pointer-events: none;
+      user-select: none;
+    }
+    .hero-kicker {
+      position: absolute;
+      top: 17%;
+      left: 5%;
+      z-index: 1;
+      font-size: 10px;
+      line-height: 1.8;
+      letter-spacing: 2px;
+      font-weight: 700;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+    }
+    .hero-slogan {
+      position: absolute;
+      right: 7%;
+      top: 16%;
+      margin: 0;
+      font-size: clamp(18px, 2vw, 27px);
+      line-height: 1.45;
+      letter-spacing: .25em;
+      font-weight: 500;
+      z-index: 1;
+    }
+    .hero-slogan::after {
+      content: "";
+      display: block;
+      width: 100%;
+      margin-top: 12px;
+      border-bottom: 1px solid var(--ink);
+    }
+    .hero-accent {
+      position: absolute;
+      color: var(--acid);
+      font-size: 44px;
+      font-weight: 300;
+      pointer-events: none;
+    }
+    .hero-accent-one { top: 23%; left: 58%; }
+    .hero-accent-two { bottom: 8%; right: 25%; transform: rotate(-25deg); }
+    .hero-registration {
+      position: absolute;
+      z-index: 1;
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--ink-muted);
+      border-radius: 50%;
+      opacity: .65;
+      pointer-events: none;
+    }
+    .hero-registration::before, .hero-registration::after {
+      content: "";
+      position: absolute;
+      background: var(--ink-muted);
+    }
+    .hero-registration::before { width: 1px; height: 42px; left: 13px; top: -8px; }
+    .hero-registration::after { height: 1px; width: 42px; top: 13px; left: -8px; }
+    .hero-registration-left { left: 2.5%; top: 43%; transform: scale(.55); }
+    .hero-registration-right { right: 3%; top: 57%; transform: scale(.85); }
+    .hero-shop-link {
+      position: absolute;
+      z-index: 3;
+      left: 5%;
+      bottom: 8%;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid currentColor;
+      padding: 0 0 7px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+    .hero-shop-link span { margin-left: 38px; }
+    .hero-creator-note {
+      position: absolute;
+      right: 6%;
+      bottom: 6%;
+      z-index: 2;
+      margin: 0;
+      color: var(--paper);
+      font: 9px/1.8 Georgia, serif;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .hero-hotspots { position: absolute; inset: 0; }
     .hero-hotspot {
       position: absolute;
-      pointer-events: auto;
+      display: block;
       cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
       text-decoration: none;
-      transition: transform .2s cubic-bezier(.2, .9, .2, 1);
+      transition: transform .25s ease;
+      z-index: 2;
     }
-    .hero-hotspot:hover {
-      transform: scale(1.02);
+    .hero-hotspot:hover { transform: translateY(-5px); }
+    .hero-photo-slot {
+      height: calc(100% - 66px);
+      min-height: 240px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: transparent;
+      box-shadow: 0 4px 10px rgba(17,17,15,.07);
     }
-    .hero-hotspot-pill {
-      background: rgba(17, 17, 15, 0.85);
-      backdrop-filter: blur(8px);
-      color: #fff;
-      font-size: 10px;
-      letter-spacing: 1.5px;
-      padding: 6px 14px;
-      border-radius: 20px;
+    .hero-photo-slot::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border: 12px solid #fff;
+      box-shadow: inset 0 0 0 1px rgba(17,17,15,.08);
+      pointer-events: none;
+    }
+    .hero-product-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      transition: transform .4s cubic-bezier(.16, 1, .3, 1);
+    }
+    .hero-hotspot:hover .hero-product-image { transform: scale(1.04); }
+    .hero-product-info {
       display: flex;
-      align-items: center;
-      gap: 8px;
-      border: 1px solid rgba(255,255,255,0.2);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      padding-top: 9px;
+      color: var(--ink);
+      text-transform: uppercase;
+    }
+    .hero-product-info strong { font-size: 10px; letter-spacing: 1.5px; }
+    .hero-product-info span { font-size: 9px; letter-spacing: 1px; color: var(--ink-muted); }
+    .hero-hotspot-pill {
+      position: absolute;
+      top: 42%;
+      left: 50%;
+      transform: translate(-50%, 6px);
       opacity: 0;
-      transform: translateY(6px);
-      transition: opacity .25s, transform .25s;
+      background: var(--ink);
+      color: white;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      padding: 8px 13px;
+      border-radius: 20px;
+      transition: opacity .2s, transform .2s;
+      white-space: nowrap;
     }
-    .hero-hotspot-pill span { color: var(--acid); font-weight: bold; }
-    .hero-hotspot:hover .hero-hotspot-pill {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .hero-hotspot-pill span { color: var(--acid); font-weight: 800; }
+    .hero-hotspot:hover .hero-hotspot-pill { opacity: 1; transform: translate(-50%, 0); }
 
-    .spot-shatter { left: 4%; top: 22%; width: 33%; height: 60%; }
-    .spot-spiral { left: 35%; top: 8%; width: 26%; height: 45%; }
-    .spot-core { right: 6%; top: 24%; width: 30%; height: 55%; }
-    .spot-flow { left: 34%; top: 48%; width: 28%; height: 48%; }
+    /* Hero photos sync with each product's image in CATALOG. */
+    .spot-shatter { left: 8%; top: 25%; width: 24%; height: 61%; transform: rotate(-5deg); }
+    .spot-spiral { left: 34%; top: 14%; width: 22%; height: 49%; transform: rotate(2deg); }
+    .spot-core { right: 7%; top: 31%; width: 23%; height: 55%; transform: rotate(4deg); }
+    .spot-flow { left: 47%; bottom: 2%; width: 23%; height: 46%; transform: rotate(-3deg); }
+    .spot-shatter:hover, .spot-spiral:hover, .spot-core:hover, .spot-flow:hover { transform: translateY(-5px) rotate(0); }
 
     /* COLLECTION GRID */
     .collection {
@@ -1200,23 +1341,49 @@
   <main>
     <!-- HERO SECTION -->
     <section class="hero" id="home">
-      <!-- Desktop Reference Poster View with Precise Clickable Hotspots -->
+      <!-- Desktop collage. Product images are synced from CATALOG. -->
       <div class="desktop-reference">
-        <img src="assets/collection-reference.webp" alt="HYP3 Thermal Streetwear Collection">
+        <div class="hero-backdrop-word" aria-hidden="true">HYP3</div>
+        <div class="hero-kicker">01 &nbsp; ─── &nbsp; THERMAL VINYL<br>　　CLOTHING<br>　　COLLECTION</div>
+        <h1 class="hero-slogan">HEAT.<br>PRESS.<br>WEAR.</h1>
+        <span class="hero-accent hero-accent-one" aria-hidden="true">＋</span>
+        <span class="hero-accent hero-accent-two" aria-hidden="true">／</span>
+        <span class="hero-registration hero-registration-left" aria-hidden="true"></span>
+        <span class="hero-registration hero-registration-right" aria-hidden="true"></span>
+        <div class="hero-paint-stroke" aria-hidden="true"></div>
+        <div class="hero-torn-paper" aria-hidden="true"></div>
         <div class="hero-hotspots">
           <div class="hero-hotspot spot-shatter" onclick="openSidebar('shatter')" title="Inspect Shatter">
-            <div class="hero-hotspot-pill">INSPECT <span>01. SHATTER</span> →</div>
+            <div class="hero-photo-slot">
+              <img class="hero-product-image" data-hero-image="shatter" src="assets/shatter.png" alt="Shatter thermal vinyl tee">
+              <div class="hero-hotspot-pill">VIEW <span>01. SHATTER</span> →</div>
+            </div>
+            <div class="hero-product-info"><strong data-hero-name="shatter">01. SHATTER</strong><span data-hero-colorway="shatter">BLACK / LIME</span></div>
           </div>
           <div class="hero-hotspot spot-spiral" onclick="openSidebar('spiral')" title="Inspect Spiral">
-            <div class="hero-hotspot-pill">INSPECT <span>02. SPIRAL</span> →</div>
+            <div class="hero-photo-slot">
+              <img class="hero-product-image" data-hero-image="spiral" src="assets/spiral.png" alt="Spiral thermal vinyl tee">
+              <div class="hero-hotspot-pill">VIEW <span>02. SPIRAL</span> →</div>
+            </div>
+            <div class="hero-product-info"><strong data-hero-name="spiral">02. SPIRAL</strong><span data-hero-colorway="spiral">OFF WHITE / BLACK</span></div>
           </div>
           <div class="hero-hotspot spot-core" onclick="openSidebar('core')" title="Inspect Core">
-            <div class="hero-hotspot-pill">INSPECT <span>03. CORE</span> →</div>
+            <div class="hero-photo-slot">
+              <img class="hero-product-image" data-hero-image="core" src="assets/core.png" alt="Core thermal vinyl tee">
+              <div class="hero-hotspot-pill">VIEW <span>03. CORE</span> →</div>
+            </div>
+            <div class="hero-product-info"><strong data-hero-name="core">03. CORE</strong><span data-hero-colorway="core">CHARCOAL / LIME</span></div>
           </div>
           <div class="hero-hotspot spot-flow" onclick="openSidebar('flow')" title="Inspect Flow">
-            <div class="hero-hotspot-pill">INSPECT <span>04. FLOW</span> →</div>
+            <div class="hero-photo-slot">
+              <img class="hero-product-image" data-hero-image="flow" src="assets/flow.png" alt="Flow thermal vinyl tee">
+              <div class="hero-hotspot-pill">VIEW <span>04. FLOW</span> →</div>
+            </div>
+            <div class="hero-product-info"><strong data-hero-name="flow">04. FLOW</strong><span data-hero-colorway="flow">BONE / BLACK</span></div>
           </div>
         </div>
+        <a class="hero-shop-link" href="#collection">SHOP NOW <span>→</span></a>
+        <p class="hero-creator-note">PREMIUM TEES<br>FOR CREATORS<br>BY CREATORS</p>
       </div>
 
       <!-- UNIQUE MOBILE EXPERIENCE: Dynamic Thermal Interactive Showcase -->
@@ -1480,7 +1647,7 @@
         sub: 'Thermal Vinyl Graphic Tee',
         price: 1199,
         formattedPrice: '₹1,199',
-        image: 'assets/shatter.png',
+        image: 'assets/products/shatter.webp',
         colorway: 'Black / Lime Neon',
         colors: [
           { name: 'Pitch Black', code: 'black', hex: '#111111' },
@@ -1501,7 +1668,7 @@
         sub: 'Kinetic Motion Vinyl Tee',
         price: 1199,
         formattedPrice: '₹1,199',
-        image: 'assets/spiral.png',
+        image: 'assets/products/spiral.webp',
         colorway: 'Off White / Black',
         colors: [
           { name: 'Off White / Raw', code: 'cream', hex: '#e8e7de' },
@@ -1522,7 +1689,7 @@
         sub: 'Thermal Nucleus Graphic Tee',
         price: 1199,
         formattedPrice: '₹1,199',
-        image: 'assets/core.png',
+        image: 'assets/products/core.webp',
         colorway: 'Charcoal / Acid Lime',
         colors: [
           { name: 'Acid Lime Core', code: 'lime', hex: '#c8ff00' },
@@ -1543,7 +1710,7 @@
         sub: 'Organic Thermal Streamline Tee',
         price: 1199,
         formattedPrice: '₹1,199',
-        image: 'assets/flow.png',
+        image: 'assets/products/flow.webp',
         colorway: 'Bone Ivory / Obsidian',
         colors: [
           { name: 'Bone Ivory', code: 'cream', hex: '#e8e7de' },
@@ -1572,10 +1739,25 @@
 
     // Initialize Page
     document.addEventListener('DOMContentLoaded', () => {
+      syncHeroProductImages();
       renderCollectionGrid();
       renderMobileSwitcher();
       setMobileFeatured(0);
     });
+
+    // Keep the desktop hero pointed at the same replaceable image paths as the catalog.
+    function syncHeroProductImages() {
+      document.querySelectorAll('[data-hero-image]').forEach(img => {
+        const product = CATALOG.find(item => item.id === img.dataset.heroImage);
+        if (!product) return;
+        img.src = product.image;
+        img.alt = `${product.name} thermal vinyl streetwear tee`;
+        const name = document.querySelector(`[data-hero-name="${product.id}"]`);
+        const colorway = document.querySelector(`[data-hero-colorway="${product.id}"]`);
+        if (name) name.textContent = `${product.num}. ${product.name}`;
+        if (colorway) colorway.textContent = product.colorway;
+      });
+    }
 
     // Render Collection Grid
     function renderCollectionGrid() {
