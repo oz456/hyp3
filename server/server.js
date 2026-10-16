@@ -264,7 +264,11 @@ app.post('/api/orders/:orderId/confirm', (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`HYP3 Backend server listening at http://localhost:${PORT}`);
-  console.log(`UPI Target VPA: ${UPI_VPA}`);
-});
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`HYP3 Backend server listening at http://localhost:${PORT}`);
+    console.log(`UPI Target VPA: ${UPI_VPA}`);
+  });
+}
+
+export default app;
